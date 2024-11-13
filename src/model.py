@@ -16,7 +16,7 @@ class RecommendationModel:
         self.indices = pd.Series(self.smd.index, index=self.smd['Series_Title'])
 
     def get_films(self):
-        result = {'data': self.smd.sort_values(by=['Released_Year','IMDB_Rating'], ascending=False, axis=0).iloc[1:31].to_dict('records')}
+        result = {'data': self.smd.sort_values(by=['Released_Year','IMDB_Rating'], ascending=False, axis=0).iloc[1:35].to_dict('records')}
         return json.dumps(result)
 
     def get_film(self, title: str):
