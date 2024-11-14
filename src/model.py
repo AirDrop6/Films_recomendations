@@ -1,5 +1,4 @@
 import pandas as pd
-import json
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
@@ -17,11 +16,11 @@ class RecommendationModel:
 
     def get_films(self):
         result = {'data': self.smd.sort_values(by=['Released_Year','IMDB_Rating'], ascending=False, axis=0).iloc[1:35].to_dict('records')}
-        return json.dumps(result)
+        return result
 
     def get_film(self, title: str):
         result = {'data': self.smd.loc[self.smd['Series_Title'] == title].to_dict('records')}
-        return json.dumps(result)
+        return result
 
     def get_recommendations(self, title: str):
         idx = self.indices[title]
@@ -33,8 +32,4 @@ class RecommendationModel:
         movies = self.smd.iloc[movie_indices]#[['Series_Title', 'IMDB_Rating']]
         qualified = movies.sort_values(by="IMDB_Rating", ascending=False, axis=0).to_dict('records')
         result = {'data': qualified}
-        return json.dumps(result)
-
-
-
-
+        return result
