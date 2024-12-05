@@ -1,0 +1,219 @@
+/* @font-face {
+    font-family: 'Montserrat';
+    font-style:  normal;
+    font-weight: 400;
+    src: url("../public/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("ttf");
+  }
+  
+@font-face {
+    font-family: 'Montserrat';
+    font-style:  normal;
+    font-weight: 300 800;
+    src: url("../public/fonts/Montserrat-VariableFont_wght") format("ttf");
+  } */
+
+@import url('../vendor/fonts.css');
+
+body {
+    font-family: 'Montserrat', sans-serif; /* Шрифт для всего документа */
+    margin: 0; 
+    padding: 0;
+    background-color: #f0f0f0; /* Цвет фона страницы */
+}
+
+header {
+    display: flex; /* Используем flexbox для расположения элементов в header */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Отступы в заголовке */
+    background-color: #19334d; /* Цвет фона заголовка */
+    color: #D3D3D3; /* Цвет текста в заголовке */
+}
+
+.logo img {
+    width: 50px; /* Ширина логотипа */
+    cursor: pointer; /* Курсор в виде указателя при наведении на логотип */
+}
+
+.user-icon img{
+    width: 50px; /* Ширина логотипа */
+}
+
+h1 {
+    margin: 0 20px; /* Отступы заголовка */
+}
+
+
+
+
+.container {
+    width: 80%; /* Ширина контейнера */
+    margin: 10px auto;/* Центрируем контейнер */
+
+}
+
+
+
+#search-input {
+    width: 50%; /* Уменьшаем ширину поля ввода до 50% контейнера */
+    padding: 10px; /* Внутренние отступы */
+    font-size: 16px; /* Размер шрифта */
+    margin-bottom: 10px; /* Отступ снизу */
+    display: block; /* Делаем поле ввода блочным элементом для центрирования */
+    margin-left: auto; /* Центрируем поле ввода */
+    margin-right: auto; /* Центрируем поле ввода */
+}
+
+.suggestions {
+    background: white; /* Цвет фона для подсказок */
+    position: absolute; /* Позиционирование для отображения над другими элементами */
+    width: 50%; /* Ширина подсказок соответствует ширине поля ввода */
+    z-index: 10; /* Уровень наложения */
+    left: 50%; /* Позиционируем по центру */
+    transform: translateX(-50%); /* Центрируем подсказки относительно их ширины */
+}
+
+.suggestion-item {
+    padding: 10px; /* Внутренние отступы для элемента подсказки */
+    cursor: pointer; /* Курсор при наведении */
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении на элемент подсказки */
+}
+
+.movie-section {
+    margin-top: 20px; /* Отступ сверху для секций фильма и рекомендаций */
+}
+
+
+.hidden {
+    display: none; /* Скрытие элемента */
+}
+
+
+
+
+
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+.movie-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+#found-movie.movie-section{
+    display: flex;
+}
+
+#recommendations.movie-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    margin-left: -100px;
+}
+
+#popular-movies.movie-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    margin-left: -135px;
+}
+
+
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+footer {
+    background-color: #19334d;
+    color: white;
+    text-align: left;
+    padding: 10px 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-footer {
+    height: 50px; /* Измените по своему усмотрению */
+}
+
