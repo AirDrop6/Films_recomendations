@@ -2,3 +2,4 @@
 .venv/*
 *.xml
 backend/src/script.py
+.idea
