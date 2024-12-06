@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="src/public/images/favicon.ico" type="image/x-icon"> -->
     <link rel="icon" href="<%=require('./public/images/favicon.ico')%>" type="image/x-icon">
     <title>FilmNavigator</title>
-    <!-- <link rel="stylesheet" href="./styles/styles.css"> Подключение файла стилей -->
 </head>
 <body>
     <header>
         <div class="logo"> <!-- Логотип, по клику обновляет страницу -->
-            <!-- <img src="src/public/images/logo.png" alt="Логотип"> -->
             <img src="<%=require('./public/images/logo.png')%>" alt="Логотип">
 
         </div>
         <h1>FilmNavigator</h1> <!-- Название сайта -->
         <div class="user-icon">
-            <!-- <img src="src/public/images/user-icon.png" alt="Профиль пользователя"> Иконка профиля пользователя -->
             <img src="<%=require('./public/images/user-icon.png')%>" alt="Логотип">
 
         </div>
@@ -39,22 +35,22 @@
     <footer>
         <div class="footer-content">
             <p>© 2023 FilmNavigator</p>
-            <!-- <img src="src/public/images/logo.png" alt="Логотип" class="logo-footer"> -->
             <img src="<%=require('./public/images/logo.png')%>" alt="Логотип" class="logo-footer">
         </div>
     </footer>
-
-    <div id="modal" class="modal">
+    <!-- Модальное окно -->
+    <div id="movie-modal" class="modal" style="display: none;">
         <div class="modal-content">
-            <span class="close-button">&#x2715;</span>
-            <h2 id="modal-title">Название фильма</h2>
-            <img id="modal-poster" src="poster-placeholder.jpg" alt="Постер фильма">
-            <p><strong>Описание:</strong> <span id="modal-description"></span></p>
-            <p><strong>Актеры:</strong> <span id="modal-actors"></span></p>
-            <p><strong>Режиссер:</strong> <span id="modal-director"></span></p>
+            <span class="close">&times;</span> <!-- Кнопка закрытия -->
+            <img id="modal-poster" src="" alt="Poster">
+            <div class="modal-info"> <!-- Новый класс для центрирования информации -->
+                <h2 id="modal-title"></h2>
+                <p id="modal-overview"></p>
+                <p><strong>Актеры:</strong> <span id="modal-actors"></span></p>
+            </div>
         </div>
     </div>
+    
 
-    <!-- <script src="./scripts/script.js"></script> Подключение файла с JavaScript -->
 </body>
 </html>

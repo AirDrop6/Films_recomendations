@@ -1,17 +1,3 @@
-/* @font-face {
-    font-family: 'Montserrat';
-    font-style:  normal;
-    font-weight: 400;
-    src: url("../public/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("ttf");
-  }
-  
-@font-face {
-    font-family: 'Montserrat';
-    font-style:  normal;
-    font-weight: 300 800;
-    src: url("../public/fonts/Montserrat-VariableFont_wght") format("ttf");
-  } */
-
 @import url('../vendor/fonts.css');
 
 body {
@@ -43,16 +29,11 @@ h1 {
     margin: 0 20px; /* Отступы заголовка */
 }
 
-
-
-
 .container {
     width: 80%; /* Ширина контейнера */
     margin: 10px auto;/* Центрируем контейнер */
 
 }
-
-
 
 #search-input {
     width: 50%; /* Уменьшаем ширину поля ввода до 50% контейнера */
@@ -86,14 +67,9 @@ h1 {
     margin-top: 20px; /* Отступ сверху для секций фильма и рекомендаций */
 }
 
-
 .hidden {
     display: none; /* Скрытие элемента */
 }
-
-
-
-
 
 .movies-container {
     display: flex;
@@ -103,11 +79,6 @@ h1 {
     padding: 0 20px;
     margin-bottom: 20px;
 }
-
-
-
-
-
 
 .movie-card {
     background-color: #fff;
@@ -154,52 +125,6 @@ h1 {
     margin-left: -135px;
 }
 
-
-.modal {
-    display: none; /* Скрыто по умолчанию */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    width: 80%;
-    text-align: center;
-}
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
 footer {
     background-color: #19334d;
     color: white;
@@ -216,4 +141,60 @@ footer {
 .logo-footer {
     height: 50px; /* Измените по своему усмотрению */
 }
+
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Открывается поверх */
+    z-index: 1; /* На переднем плане */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Прокрутка при необходимости */
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Центрирование */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Ширина модального окна */
+    max-width: 600px; /* Максимальная ширина */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для эффекта поднятия */
+    text-align: center; /* Центрирование всего текста внутри модального окна */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content img {
+    width: 50%; /* Ширина постера 50% от ширины модального окна */
+    height: auto; /* Высота автоматически подстраивается */
+    border-radius: 8px; /* Закругленные углы постера */
+    margin: 0 auto; /* Центрирование изображения */
+    display: block; /* Отображение как блочный элемент для центрирования */
+}
+
+.modal-info {
+    margin-top: 15px; /* Отступ сверху */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 

@@ -23,6 +23,9 @@ const titlefoundMovieDiv = document.getElementById('title-found-movie')
 const titlerecommendationsDiv = document.getElementById('title-recommendations')
 const titlePopularMovieDiv = document.getElementById('title-popular-movies')
 
+const modal = document.getElementById('modal'); // Модальное окно
+const closeButton = document.querySelector('.close-button'); // Кнопка закрытия модального окна
+
 let lastSearchedMovie = '';
 
 // Обработчик события ввода текста в поисковую строку
@@ -77,20 +80,110 @@ async function fetchMovieDetails(title) {
 
 }
 
-// Функция для отображения найденного фильма
+// Функция для отображения карточки фильма
 function displayFoundMovie(movie) {
-    titlefoundMovieDiv.classList.remove('hidden')
+    titlefoundMovieDiv.classList.remove('hidden');
     foundMovieDiv.classList.remove('hidden'); // Убираем скрытие
-    foundMovieDiv.innerHTML = `
-        <div class="movie-card">
+    foundMovieDiv.innerHTML += `  <!-- Добавляем карточку фильма в контейнер -->
+        <div class="movie-card" id="movie-${movie.index}">
             <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
             <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
             <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
         </div>
     `;
+
+    // Добавляем обработчик клика на карточку фильма
+    document.getElementById(`movie-${movie.index}`).onclick = function() {
+        openModal(movie.Series_Title);
+    };
 }
 
+// Функция для открытия модального окна
+function openModal(title) {
+    // Выполняем запрос к API для получения информации о фильме
+    fetch(`http://127.0.0.1:8000/films/search/${title}`)
+        .then(response => response.json()) // Преобразуем ответ в JSON
+        .then(data => {
+            if (data.data.length > 0) { // Проверяем, есть ли данные
+                const movie = data.data[0]; // Получаем первый фильм из результата
+                document.getElementById('modal-poster').src = movie.Poster_Link; // Устанавливаем постер
+                document.getElementById('modal-title').innerText = movie.Series_Title; // Устанавливаем название
+                document.getElementById('modal-overview').innerText = movie.Overview; // Устанавливаем описание
+                // Устанавливаем актеров
+                const actors = [movie.Star1, movie.Star2, movie.Star3, movie.Star4].filter(Boolean).join(', ');
+                document.getElementById('modal-actors').innerText = actors; 
+                
+                // Показываем модальное окно
+                document.getElementById('movie-modal').style.display = "block";
+            }
+        })
+        .catch(error => console.error('Ошибка:', error)); // Обработка ошибок
+}
 
+// Функция для закрытия модального окна
+function closeModal() {
+    document.getElementById('movie-modal').style.display = "none"; // Скрываем модальное окно
+}
+
+// Добавляем обработчик клика на кнопку закрытия модального окна
+document.addEventListener('DOMContentLoaded', (event) => {
+    const closeButton = document.querySelector('.close');
+    closeButton.addEventListener('click', closeModal); // Закрытие при нажатии на кнопку "крестик"
+});
+
+// Закрытие модального окна при клике вне его
+window.onclick = function(event) {
+    const modal = document.getElementById('movie-modal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Функция для отображения популярных фильмов
+function displayPopularMovies(movies) {
+    titlePopularMovieDiv.classList.remove('hidden')
+    popularMoviesDiv.classList.remove('hidden'); // Убираем скрытие
+
+    movies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card'); // Добавляем класс для стилей
+        movieCard.innerHTML = `
+            <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
+            <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
+            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
+        `;
+        
+        // Добавляем обработчик клика на карточку фильма
+        movieCard.onclick = function() {
+            openModal(movie.Series_Title);
+        };
+
+        popularMoviesDiv.appendChild(movieCard); // Добавляем карточку фильма в контейнер
+    });
+}
+
+// Функция для отображения рекомендаций
+function displayRecommendations(recommendations) {
+    titlerecommendationsDiv.classList.remove('hidden')
+    recommendationsDiv.classList.remove('hidden'); // Убираем скрытие
+
+    recommendations.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card'); // Добавляем класс для стилей
+        movieCard.innerHTML = `
+            <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
+            <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
+            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
+        `;
+        
+        // Добавляем обработчик клика на карточку фильма
+        movieCard.onclick = function() {
+            openModal(movie.Series_Title);
+        };
+
+        recommendationsDiv.appendChild(movieCard); // Добавляем карточку фильма в контейнер
+    });
+}
 
 // Функция для запроса рекомендаций
 async function fetchRecommendations(title) {
@@ -108,27 +201,6 @@ async function fetchRecommendations(title) {
         console.error('Ошибка при получении данных:', error); // Логируем ошибку
     }
 }
-
-// Функция для отображения рекомендаций
-function displayRecommendations(recommendations) {
-    titlerecommendationsDiv.classList.remove('hidden')
-    recommendationsDiv.classList.remove('hidden'); // Убираем скрытие
-    //recommendationsDiv.innerHTML = '<h2>Рекомендации</h2>'; // Заголовок для рекомендаций
-
-    recommendations.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('movie-card'); // Добавляем класс для стилей
-        movieCard.innerHTML = `
-            <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
-            <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
-            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
-        `;
-        recommendationsDiv.appendChild(movieCard); // Добавляем карточку фильма в контейнер
-    });
-}
-
-
-
 
 // Элемент для отображения популярных фильмов
 const popularMoviesDiv = document.getElementById('popular-movies'); // Убедитесь, что элемент с таким ID существует на странице
@@ -150,81 +222,8 @@ async function fetchPopularMovies() {
     }
 }
 
-// Функция для отображения популярных фильмов
-function displayPopularMovies(movies) {
-    titlePopularMovieDiv.classList.remove('hidden')
-    popularMoviesDiv.classList.remove('hidden'); // Убираем скрытие
-    // popularMoviesDiv.innerHTML = '<h2>Популярные фильмы</h2>'; // Заголовок для популярных фильмов
-
-    movies.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('movie-card'); // Добавляем класс для стилей
-        movieCard.innerHTML = `
-            <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
-            <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
-            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
-        `;
-        popularMoviesDiv.appendChild(movieCard); // Добавляем карточку фильма в контейнер
-    });
-}
-
 // Вызов функции для загрузки популярных фильмов при загрузке страницы
 document.addEventListener('DOMContentLoaded', fetchPopularMovies);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Получаем элементы модального окна и карточек фильмов
-const modal = document.getElementById('modal');
-const closeButton = document.querySelector('.close-button');
-const moviesContainer = document.getElementById('movies-container');
-
-
-// Функция для открытия модального окна
-function openModal(movie) {
-    const title = movie.getAttribute('data-title');
-    const description = movie.getAttribute('data-description');
-    const actors = movie.getAttribute('data-actors');
-    const director = movie.getAttribute('data-director');
-
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-description').textContent = description;
-    document.getElementById('modal-actors').textContent = actors;
-    document.getElementById('modal-director').textContent = director;
-
-    modal.style.display = 'block';
-}
-
-// Обработчик событий при нажатии на карточки фильмов
-moviesContainer.addEventListener('click', (event) => {
-    const movieCard = event.target.closest('.movie-card');
-    if (movieCard) {
-        openModal(movieCard);
-    }
-});
-
-// Закрыть модальное окно
-closeButton.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// Закрыть модальное окно при клике за его пределами
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-});
