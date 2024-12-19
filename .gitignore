@@ -1,5 +1,8 @@
 /.venv
 .venv/*
 *.xml
-backend/src/script.py
+backend/data preprocessing/test.py
 .idea
+ChromeDriverDir.py
+backend/csv
+backend/chromedriver-win64

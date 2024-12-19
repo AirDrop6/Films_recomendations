@@ -15,7 +15,7 @@ class RecommendationModel:
         self.indices = pd.Series(self.smd.index, index=self.smd['Series_Title'])
 
     def get_films(self):
-        films = self.smd.sort_values(by=['Released_Year','IMDB_Rating'], ascending=False, axis=0).iloc[1:36]
+        films = self.smd.iloc[0:35]
         films = films.fillna('').to_dict('records')
         result = {'data': films}
         return result
@@ -34,7 +34,7 @@ class RecommendationModel:
         movie_indices = [i[0] for i in sim_scores]
 
         movies = self.smd.iloc[movie_indices]#[['Series_Title', 'IMDB_Rating']]
-        qualified = movies.sort_values(by="IMDB_Rating", ascending=False, axis=0)
+        qualified = movies.sort_values(by="Rating", ascending=False, axis=0)
         qualified = qualified.fillna('').to_dict('records')
         result = {'data': qualified}
         return result
