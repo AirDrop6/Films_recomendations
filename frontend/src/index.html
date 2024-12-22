@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="<%=require('./public/images/favicon.ico')%>" type="image/x-icon">
+    <title>FilmNavigator</title>
+</head>
+<body>
+    <header>
+        <div class="logo"> <!-- Логотип, по клику обновляет страницу -->
+            <img src="<%=require('./public/images/logo.png')%>" alt="Логотип">
+
+        </div>
+        <h1>FilmNavigator</h1> <!-- Название сайта -->
+        <div class="user-icon">
+            <img src="<%=require('./public/images/user-icon.png')%>" alt="Логотип">
+
+        </div>
+    </header>
+    
+    <main>
+        <div class="container"> <!-- Контейнер для содержимого страницы -->
+            <input type="text" id="search-input" placeholder="Введите название фильма..." autocomplete="off"> <!-- Поле ввода для поиска фильмов -->
+            <div id="suggestions" class="suggestions"></div> <!-- Контейнер для отображения подсказок -->
+            <div id="title-found-movie" class="movie-section hidden"><h2>Найденный фильм</h2></div>
+            <div id="found-movie" class="movie-section hidden"></div> <!-- Контейнер для найденного фильма (скрыт по умолчанию) -->
+            <div id="title-recommendations" class="movie-section hidden"><h2>Рекомендации</h2></div>
+            <div id="recommendations" class="movie-section hidden"></div> <!-- Контейнер для рекомендаций (скрыт по умолчанию) -->
+            <div id="title-popular-movies" class="movie-section hidden"><h2>Популярные фильмы</h2></div>
+            <div id="popular-movies" class="movie-section hidden"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 FilmNavigator</p>
+            <img src="<%=require('./public/images/logo.png')%>" alt="Логотип" class="logo-footer">
+        </div>
+    </footer>
+    <!-- Модальное окно -->
+    <div id="movie-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span> <!-- Кнопка закрытия -->
+            <img id="modal-poster" src="" alt="Poster">
+            <div class="modal-info"> <!-- Новый класс для центрирования информации -->
+                <h2 id="modal-title"></h2>
+                <p id="modal-overview"></p>
+                <p><strong>Актеры:</strong> <span id="modal-actors"></span></p>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>
