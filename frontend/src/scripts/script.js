@@ -88,7 +88,7 @@ function displayFoundMovie(movie) {
         <div class="movie-card" id="movie-${movie.index}">
             <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
             <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
-            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
+            <p>Рейтинг: ${movie.Rating}</p> <!-- Рейтинг фильма -->
         </div>
     `;
 
@@ -150,7 +150,7 @@ function displayPopularMovies(movies) {
         movieCard.innerHTML = `
             <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
             <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
-            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
+            <p>Рейтинг: ${movie.Rating}</p> <!-- Рейтинг фильма -->
         `;
         
         // Добавляем обработчик клика на карточку фильма
@@ -173,7 +173,7 @@ function displayRecommendations(recommendations) {
         movieCard.innerHTML = `
             <img src="${movie.Poster_Link}" alt="${movie.Series_Title}"> <!-- Отображаем постер фильма -->
             <h2>${movie.Series_Title} (${movie.Released_Year})</h2> <!-- Название и год выпуска -->
-            <p>Рейтинг: ${movie.IMDB_Rating}</p> <!-- Рейтинг фильма -->
+            <p>Рейтинг: ${movie.Rating}</p> <!-- Рейтинг фильма -->
         `;
         
         // Добавляем обработчик клика на карточку фильма
