@@ -82,6 +82,11 @@ async function fetchMovieDetails(title) {
 
 // Функция для отображения карточки фильма
 function displayFoundMovie(movie) {
+    var node = document.getElementById("found-movie");
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
+
     titlefoundMovieDiv.classList.remove('hidden');
     foundMovieDiv.classList.remove('hidden'); // Убираем скрытие
     foundMovieDiv.innerHTML += `  <!-- Добавляем карточку фильма в контейнер -->
@@ -164,6 +169,11 @@ function displayPopularMovies(movies) {
 
 // Функция для отображения рекомендаций
 function displayRecommendations(recommendations) {
+    var node = document.getElementById("recommendations");
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
+
     titlerecommendationsDiv.classList.remove('hidden')
     recommendationsDiv.classList.remove('hidden'); // Убираем скрытие
 
