@@ -6,3 +6,5 @@ backend/data preprocessing/test.py
 ChromeDriverDir.py
 backend/csv
 backend/chromedriver-win64
+frontend/node_modules
+dist
