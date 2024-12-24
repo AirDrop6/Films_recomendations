@@ -1,12 +1,12 @@
 
-FROM python:3.12.6-slim
+FROM python:3.12.6
 
 COPY requirements.txt requirements.txt 
 
 USER root
 
-RUN pip install fastapi --index-url https://pypi.org/simple/
 RUN pip install pandas
+RUN pip install fastapi --index-url https://pypi.org/simple/
 RUN pip install scikit-learn
 RUN pip install uvicorn
 
