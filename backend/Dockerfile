@@ -1,7 +1,17 @@
-FROM python:3.12.6-slim
+# 
+FROM python:3.12
 
-RUN pip install -r requirements.txt
+# 
+WORKDIR /backend
 
-COPY . .
+# 
+COPY ./requirements.txt /backend/requirements.txt
 
-CMD [ "python", "main.py" ]
+# 
+RUN pip install --no-cache-dir --upgrade -r /backend/requirements.txt
+
+# 
+COPY ./src /code/src
+
+# 
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80"]
