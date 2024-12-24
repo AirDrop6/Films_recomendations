@@ -4,7 +4,10 @@ FROM python:3.12.6-slim
 COPY requirements.txt requirements.txt 
 
 # 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install fastapi
+RUN pip install pandas
+RUN pip install scikit-learn
+RUN pip install uvicorn
 
 # 
 COPY . .
