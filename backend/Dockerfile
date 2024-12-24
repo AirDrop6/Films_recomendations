@@ -1,11 +1,12 @@
 
 FROM python:3.12.6-slim
 
+WORKDIR /usr/app/backend
+
 COPY requirements.txt requirements.txt 
 
-USER root
 
-RUN pip install pandas scikit-learn fastapi uvicorn
+RUN pip install -r requirements.txt
 
 # 
 COPY . .
