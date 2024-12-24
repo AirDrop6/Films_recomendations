@@ -3,7 +3,9 @@ FROM node:alpine as build
 WORKDIR /frontend
 
 COPY package.json package.json
-RUN npm install
+COPY package-lock.json package-lock.json
+
+RUN npm install -g npm@latest
 COPY . .
 RUN npm run build
 
