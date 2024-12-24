@@ -1,6 +1,6 @@
 import pandas as pd
 
-from usr.app.backend.src.model import RecommendationModel
+from model import RecommendationModel
 
 
 PATH = 'backend/kinopoisk_top_850.csv'
