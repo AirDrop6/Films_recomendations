@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.src.init import model
+from src.init import model
 
 router = APIRouter(
     prefix='/films'
