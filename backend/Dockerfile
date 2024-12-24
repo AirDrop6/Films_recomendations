@@ -3,8 +3,9 @@ FROM python:3.12.6-slim
 
 COPY requirements.txt requirements.txt 
 
-# 
-RUN pip install fastapi
+USER root
+
+RUN pip install fastapi --index-url https://pypi.org/simple/
 RUN pip install pandas
 RUN pip install scikit-learn
 RUN pip install uvicorn
