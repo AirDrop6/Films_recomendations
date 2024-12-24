@@ -63,7 +63,7 @@ searchInput.addEventListener('input', () => {
 // Функция для запроса деталей фильма по названию
 async function fetchMovieDetails(title) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/films/search/${encodeURIComponent(title)}`); // Кодируем название
+        const response = await fetch(`http://87.228.37.133:8000/films/search/${encodeURIComponent(title)}`); // Кодируем название
         const data = await response.json(); // Преобразуем ответ в JSON
 
         if (data.data && data.data.length > 0) { // Проверяем, есть ли данные
@@ -106,7 +106,7 @@ function displayFoundMovie(movie) {
 // Функция для открытия модального окна
 function openModal(title) {
     // Выполняем запрос к API для получения информации о фильме
-    fetch(`http://127.0.0.1:8000/films/search/${title}`)
+    fetch(`http://87.228.37.133:8000/films/search/${title}`)
         .then(response => response.json()) // Преобразуем ответ в JSON
         .then(data => {
             if (data.data.length > 0) { // Проверяем, есть ли данные
@@ -198,7 +198,7 @@ function displayRecommendations(recommendations) {
 // Функция для запроса рекомендаций
 async function fetchRecommendations(title) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/films/${encodeURIComponent(title)}`); // Кодируем название
+        const response = await fetch(`http://87.228.37.133:8000/films/${encodeURIComponent(title)}`); // Кодируем название
         const data = await response.json(); // Преобразуем ответ в JSON
 
         if (data.data && data.data.length > 0) { // Проверяем, есть ли данные
@@ -218,7 +218,7 @@ const popularMoviesDiv = document.getElementById('popular-movies'); // Убед�
 // Функция для запроса популярных фильмов
 async function fetchPopularMovies() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/films'); // Запрос на получение популярных фильмов
+        const response = await fetch('http://87.228.37.133:8000/films'); // Запрос на получение популярных фильмов
         const data = await response.json(); // Преобразование ответа в JSON
 
         if (data.data && data.data.length > 0) { // Проверяем, есть ли данные
